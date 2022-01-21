@@ -1,0 +1,27 @@
+server:
+  port: 9901
+
+spring:
+  application:
+    name: springcloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: gateway-9901.com
+    prefer-ip-address: true
+
+zuul:
+  routes:
+    routesMap.serviceId: cloud-provide
+    routesMap.path: /testPath/**
+  ignored-services: "*"
+  prefix: /yingwang
+
+info:
+  app.name: atguigu-microcloud
+  company.name: www.atguigu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
