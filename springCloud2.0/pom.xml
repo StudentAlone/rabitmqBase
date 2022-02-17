@@ -13,6 +13,7 @@
         <module>eureka7001</module>
         <module>consume-openfeign</module>
         <module>provide8002</module>
+        <module>gateway9901</module>
     </modules>
 
     <packaging>pom</packaging>

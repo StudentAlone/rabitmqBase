@@ -8,7 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka7001" />
+        <module name="gateway9901" />
         <module name="api" />
+        <module name="Api" />
         <module name="provide8002" />
         <module name="provide8001" />
         <module name="consume-openfeign" />

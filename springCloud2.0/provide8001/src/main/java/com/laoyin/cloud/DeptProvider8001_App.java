@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
+// 服务端
 @EnableCircuitBreaker
 @EnableEurekaClient
 public class DeptProvider8001_App {

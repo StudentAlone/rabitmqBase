@@ -1,0 +1,41 @@
+server:
+  port: 9901
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+    fetch-registry: true
+
+spring:
+  application:
+    name: gateway-9901
+  cloud:
+    gateway:
+      # 1. 通过gateway访问
+#      routes:
+#       - id: getOneId
+#         uri: http://localhost:8001
+#         predicates:
+#          - Path=/dept/**
+      # 2. 通过微服务名称访问
+      # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: selectData
+          # uri的协议为lb，表示启用Gateway的负载均衡功能
+          # note that this example also demonstrates (optional)
+          # Spring Cloud Netflix Ribbon load-balancing
+          # (defined the lb prefix on the destination URI).
+          # lb://serviceName是spring cloud gateway在微服务中自动为我们创建的负载均衡uri
+          uri: lb://CLOUD-PROVIDE
+          predicates:
+            - Path=/dept/**
+            # 在这个时间点之前可以访问
+            - Before=2022-02-14T16:15:20.655+08:00[Asia/Shanghai]
+          filters:
+            # 会在request的Header中加入参数X-Request-red=red，在服务提供端request中可以获取到
+            - AddRequestHeader=X-Request-red, blue
